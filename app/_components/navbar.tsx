@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import Image from "next/image";
+import { Fullscreen } from "lucide-react";
 
 const menuItemsCourses: { title: string; href: string }[] = [
 	{
@@ -57,31 +58,44 @@ const menuItemsQuickLinks: { title: string; href: string }[] = [
 	},
 ];
 
+// Todo: move this component out of the root layout file.
 export function NavigationMenuDemo() {
 	return (
 		<NavigationMenu className="flex flex-col max-w-none pb-5">
-			<Image
-				className="my-5"
-				src="/mclogo.png"
-				alt="logo"
-				width={230}
-				height={230}
-			/>
+			<div>
+				<Image
+					className="relative mt-5 mb-5"
+					src="/mclogo.png"
+					alt="logo"
+					width={230}
+					height={230}
+				/>
+			</div>
+			<div className="relative w-full h-[1px] mb-2">
+				<Image
+					src="/navigationBarLine.svg"
+					alt="logo"
+					layout="fill"
+					objectFit="cover"
+				/>
+			</div>
+
 			<NavigationMenuList className="space-x-10">
 				<NavigationMenuItem>
 					<Link href="/" legacyBehavior passHref>
 						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} text-baselg font-bold`}
+							className={`${navigationMenuTriggerStyle()} font-medium`}
 						>
 							Home
 						</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
-				{/* Testing this only */}
 				<NavigationMenuItem>
-					<NavigationMenuTrigger>About Us</NavigationMenuTrigger>
+					<NavigationMenuTrigger className="font-medium">
+						About Us
+					</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className=" grid w-[200px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[500px] ">
+						<ul className=" flex flex-col w-[200px] p-4 md:w-[200px] lg:w-[350px]">
 							{menuItemsAboutUs.map((component) => (
 								<ListItem
 									key={component.title}
@@ -92,13 +106,12 @@ export function NavigationMenuDemo() {
 						</ul>
 					</NavigationMenuContent>
 				</NavigationMenuItem>
-				{/* testing above only */}
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="text-baselg font-bold">
+					<NavigationMenuTrigger className="font-medium">
 						Courses
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[500px] ">
+						<ul className=" flex flex-col w-[200px] p-4 md:w-[200px] lg:w-[350px] ">
 							{menuItemsCourses.map((component) => (
 								<ListItem
 									key={component.title}
@@ -112,18 +125,18 @@ export function NavigationMenuDemo() {
 				<NavigationMenuItem>
 					<Link href="/" legacyBehavior passHref>
 						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} text-baselg font-bold`}
+							className={`${navigationMenuTriggerStyle()} font-medium`}
 						>
 							News
 						</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<NavigationMenuTrigger className="text-baselg font-bold">
+					<NavigationMenuTrigger className="font-medium">
 						Quick Links
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+						<ul className=" flex flex-col w-[200px] p-4 md:w-[200px] lg:w-[350px] ">
 							{menuItemsQuickLinks.map((component) => (
 								<ListItem
 									key={component.title}
@@ -137,13 +150,21 @@ export function NavigationMenuDemo() {
 				<NavigationMenuItem>
 					<Link href="/" legacyBehavior passHref>
 						<NavigationMenuLink
-							className={`${navigationMenuTriggerStyle()} text-baselg font-bold`}
+							className={`${navigationMenuTriggerStyle()} font-medium`}
 						>
 							News
 						</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
 			</NavigationMenuList>
+			<div className="relative w-full h-[1px] mt-2">
+				<Image
+					src="/navigationBarLine.svg"
+					alt="logo"
+					layout="fill"
+					objectFit="cover"
+				/>
+			</div>
 		</NavigationMenu>
 	);
 }
@@ -158,15 +179,12 @@ const ListItem = React.forwardRef<
 				<a
 					ref={ref}
 					className={cn(
-						"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+						"block select-none space-y-1 rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
 						className,
 					)}
 					{...props}
 				>
 					<div className="text-sm font-medium leading-none">{title}</div>
-					<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-						{children}
-					</p>
 				</a>
 			</NavigationMenuLink>
 		</li>
