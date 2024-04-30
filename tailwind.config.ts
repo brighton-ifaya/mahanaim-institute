@@ -19,6 +19,9 @@ const config = {
 		},
 		extend: {
 			colors: {
+				formFieldText: "#A9A9A9",
+				formBgField: "#F4F4F4",
+				FormBtn: "#0A529D",
 				navigationHighlight: "#0A529D",
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
@@ -72,6 +75,9 @@ const config = {
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+			},
+			height: {
+				formFieldHeight: "65px",
 			},
 		},
 	},

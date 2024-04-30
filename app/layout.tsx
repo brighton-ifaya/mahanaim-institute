@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
-import { NavigationMenuDemo } from "./_components/navbar";
+import { NavigationMenuDemo } from "../components/ui/navbar";
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ weight: "400", style: "normal", subsets: ["latin"] });
 
